@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aribair | Global Mass Aerial Transit</title>
+    <style>
+        :root {
+            --bg-space: #060913;
+            --bg-card: #0d1326;
+            --neon-blue: #00f2fe;
+            --neon-glow: #4facfe;
+            --text-main: #ffffff;
+            --text-muted: #8da2bb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-space);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, #14203d 0%, var(--bg-space) 60%);
+        }
+
+        /* Header Navbar */
+        header {
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(6, 9, 19, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Hero Section with Background Video */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(0deg, var(--bg-space) 5%, rgba(6, 9, 19, 0.4) 50%, rgba(6, 9, 19, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(180deg, #fff 30%, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #f1f5f9;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-glow));
+            color: #000;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.4s;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(0, 242, 254, 0.7);
+        }
+
+        /* Global Layout Sections */
+        section {
+            padding: 100px 10% 80px 10%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: var(--neon-blue);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Tech Grid Section */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .card .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--neon-blue);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* Contact Secure Form */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            background: rgba(6, 9, 19, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-glow));
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            color: #000;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Form Status Messages */
+        #form-status {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            display: none;
+        }
+        .status-success { color: #00ff87; text-shadow: 0 0 10px rgba(0, 255, 135, 0.3); }
+        .status-error { color: #ff4a4a; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ARIBAIR</div>
+        <nav>
+            <a href="#vision">Vision</a>
+            <a href="#technology">Technology</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <video autoplay loop muted playsinline class="video-background">
+            <source src="hero-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+
+        <div class="hero-content">
+            <h1><span>L'chatchila Aribair.</span><br>Go Above.</h1>
+            <p>Bypassing geographic and infrastructural friction to pioneer the world's first true high-capacity aerial mass transit network. From isolation to absolute connectivity in under 20 minutes.</p>
+            <a href="#contact" class="cta-btn">Connect With Us</a>
+        </div>
+    </div>
+
+    <section id="vision">
+        <h2 class="section-title">The Strategic Vision</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="badge">Mobility</div>
+                <h3>Geographic Independence</h3>
+                <p>Direct aerial corridors bypassing ground congestion, traffic bottlenecks, and security checkpoints seamlessly connecting regional points to major economic centers.</p>
+            </div>
+            <div class="card">
+                <div class="badge">Scalability</div>
+                <h3>Mass Transit Paradigm</h3>
+                <p>Moving far beyond luxury air taxis. Designed for structural capacity scaling up to 100-passenger synchronized trial networks to redefine commuter life cycle economics.</p>
+            </div>
+            <div class="card">
+                <div class="badge">The Proving Ground</div>
+                <h3>The Ultimate Moat</h3>
+                <p>Leveraging high-complexity testbeds (topographical, tactical, regulatory) to forge an ironclad, globally exportable aviation blueprint ready for deployment anywhere.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="technology">
+        <h2 class="section-title">Proprietary DeepTech</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="badge">Patent-Pending</div>
+                <h3>MPH Propulsion Architecture</h3>
+                <p>Our Magnetic-Pneumatic Hybrid system relies on magnetic levitation to completely eliminate mechanical friction. Active energy reclamation drives a projected 60% reduction in vehicle OPEX.</p>
+            </div>
+            <div class="card">
+                <div class="badge">Intelligence</div>
+                <h3>Autonomous AI Flight Supervisor</h3>
+                <p>Localized sensor fusion and milliseconds-level edge computing models manage flight navigation, respond dynamically to wind shear, and ensure bulletproof automated flight safety.</p>
+            </div>
+            <div class="card">
+                <div class="badge">Passenger Comfort</div>
+                <h3>Active Cabin Stabilization</h3>
+                <p>Integrated gyroscopic seating configurations mitigate structural vibration and heavy G-force parameters, establishing an ultra-smooth, train-like passenger commute experience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Secure Strategic Inquiry</h2>
+        <div class="contact-container">
+            <form id="aribair-contact-form" action="https://formspree.io/f/xaqkqgzn" method="POST">
+                <div class="form-group">
+                    <label for="name">Name / Entity</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name or investment fund">
+                </div>
+                <div class="form-group">
+                    <label for="email">Official Email</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Strategic Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Provide details regarding investment inquiry or collaboration interest..."></textarea>
+                </div>
+                <button type="submit" id="submit-button" class="submit-btn">Transmit Secure Message</button>
+                <div id="form-status"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Aribair Systems. All Strategic Rights Reserved. Powered by DeepTech Innovation.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("aribair-contact-form");
+        const button = document.getElementById("submit-button");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            button.disabled = true;
+            button.innerText = "Transmitting...";
+            status.style.display = "block";
+            status.className = "";
+            status.innerText = "";
+
+            const data = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    status.className = "status-success";
+                    status.innerText = "Message Transmitted Successfully.";
+                    form.reset();
+                } else {
+                    const responseData = await response.json();
+                    if (responseData.errors) {
+                        status.className = "status-error";
+                        status.innerText = responseData.errors.map(error => error.message).join(", ");
+                    } else {
+                        status.className = "status-error";
+                        status.innerText = "Transmission failed. Please try again.";
+                    }
+                }
+            } catch (error) {
+                status.className = "status-error";
+                status.innerText = "Connection error. Please try again later.";
+            } finally {
+                button.disabled = false;
+                button.innerText = "Transmit Secure Message";
+            }
+        });
+    </script>
+</body>
+</html>
